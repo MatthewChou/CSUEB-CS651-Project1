@@ -12,7 +12,8 @@ a { color: var(--pv-green); }
 .container { max-width: 1120px; }
 .navbar { background: var(--pv-cream); border-bottom: 1px solid var(--pv-line); }
 .navbar-brand { color: var(--pv-ink); font-weight: 750; letter-spacing: -0.5px; }
-.brand-mark { width: 30px; height: 30px; margin-right: 8px; }
+/* The supplied logo includes its wordmark; preserve its original proportions. */
+.brand-mark { display: block; width: 180px; height: auto; }
 .navbar .nav-link { color: var(--pv-muted); padding-inline: 14px; }
 .navbar .nav-link.active { color: var(--pv-green); font-weight: 700; }
 .navbar .nav-link:hover { color: var(--pv-green); }
@@ -108,5 +109,85 @@ a { color: var(--pv-green); }
   .hero, .page-content { padding-block: 36px; }
   .hero h1 { letter-spacing: -1px; }
   .hero-art { max-width: 380px; }
+  .brand-mark { width: 132px; }
   .navbar .nav-link { padding-block: 12px; }
+}
+
+/* Home-only decorations: side gutters keep the artwork clear of text and controls. */
+.home-page {
+  position: relative;
+  isolation: isolate;
+  --food-inset: max(16px, calc((100% - 1120px) / 2 - 120px));
+  --scatter-scale: 1;
+  padding-inline: 128px;
+}
+.home-page > section { position: relative; z-index: 1; }
+.food-border {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.edge-food {
+  position: absolute;
+  width: 88px;
+  height: auto;
+  image-rendering: pixelated;
+}
+/* Five foods per side, with uneven spacing and offsets for a scattered look. */
+.food-strawberry { left: calc(var(--food-inset) + 10px * var(--scatter-scale)); top: 4%; transform: rotate(-16deg); }
+.food-steak { left: calc(var(--food-inset) - 6px * var(--scatter-scale)); top: 19%; transform: rotate(9deg); }
+.food-grapes { left: calc(var(--food-inset) + 18px * var(--scatter-scale)); top: 43%; transform: rotate(-8deg); }
+.food-broccoli { left: calc(var(--food-inset) + 2px * var(--scatter-scale)); top: 68%; transform: rotate(16deg); }
+.food-avocado { left: calc(var(--food-inset) - 8px * var(--scatter-scale)); top: 87%; transform: rotate(-19deg); }
+.food-taco { right: calc(var(--food-inset) + 16px * var(--scatter-scale)); top: 11%; transform: rotate(17deg); }
+.food-pizza { right: calc(var(--food-inset) - 4px * var(--scatter-scale)); top: 28%; transform: rotate(-12deg); }
+.food-hot-dog { right: calc(var(--food-inset) + 6px * var(--scatter-scale)); top: 51%; transform: rotate(8deg); }
+.food-chicken { right: calc(var(--food-inset) + 20px * var(--scatter-scale)); top: 73%; transform: rotate(-18deg); }
+.food-cheeseburger { right: calc(var(--food-inset) - 8px * var(--scatter-scale)); top: 91%; transform: rotate(12deg); }
+
+@media (max-width: 1199px) {
+  .home-page { --food-inset: 8px; padding-inline: 80px; }
+  .edge-food { width: 56px; }
+}
+
+@media (max-width: 991px) {
+  .home-page { padding-inline: 68px; }
+  .edge-food { width: 44px; }
+}
+
+/* Keep five foods on each side on phones, using smaller images and offsets. */
+@media (max-width: 575px) {
+  .home-page { --food-inset: 4px; --scatter-scale: 0.25; padding-inline: 36px; }
+  .edge-food { width: 30px; }
+}
+
+/* The plate has its own frame so these five accents never cover the hero copy. */
+.plate-scene {
+  position: relative;
+  max-width: 540px;
+  margin-inline: auto;
+  padding: 64px 50px 72px;
+}
+.plate-foods { pointer-events: none; user-select: none; }
+.plate-food {
+  position: absolute;
+  width: clamp(38px, 6vw, 80px);
+  height: auto;
+  image-rendering: pixelated;
+}
+.plate-sushi { top: 0; left: 40%; transform: rotate(-12deg); }
+.plate-cake { top: 32%; right: 0; transform: rotate(12deg); }
+.plate-boba { top: 35%; left: 0; transform: rotate(-10deg); }
+.plate-pancakes { bottom: 4px; left: 15%; transform: rotate(-8deg); }
+.plate-matcha { bottom: 0; right: 13%; transform: rotate(10deg); }
+
+@media (max-width: 991px) {
+  .plate-scene { padding: 52px 42px 60px; }
+}
+
+@media (max-width: 767px) {
+  .plate-scene { padding: 48px 32px 56px; }
+  .plate-food { width: 44px; }
 }

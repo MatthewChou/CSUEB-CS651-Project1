@@ -1,4 +1,4 @@
-import logo from '../../images/logo.svg';
+import logo from '../../images/PlatePalLogo.png';
 
 const links = [
   ['Home', 'index.html'],
@@ -16,7 +16,7 @@ export default function Navbar({ currentPage }) {
       <nav className="navbar navbar-expand-md py-3" aria-label="Main navigation">
         <div className="container">
           <a className="navbar-brand d-flex align-items-center" href="./index.html">
-            <img className="brand-mark" src={logo} alt="" />PlatePal
+            <img className="brand-mark" src={logo} alt="PlatePal" width="1535" height="1024" />
           </a>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#main-menu" aria-controls="main-menu" aria-expanded="false"

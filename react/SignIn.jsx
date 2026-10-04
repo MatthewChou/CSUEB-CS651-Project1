@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import LoginForm from './components/LoginForm';
 import CreateAccountForm from './components/CreateAccountForm';
-import plate from '../images/plate.svg';
 import '../css/signin.css';
 
 export default function SignIn() {
@@ -31,13 +30,10 @@ export default function SignIn() {
       <Navbar currentPage="Sign In" />
       <main id="main-content" className="page-content container signin-workspace">
         <header className="row align-items-center g-4 mb-4">
-          <div className="col-md-8">
+          <div className="col-12">
             <p className="eyebrow">Your PlatePal account</p>
             <h1>Welcome to the table.</h1>
             <p className="lead mt-3">A place for your meals, your goals, and your companion.</p>
-          </div>
-          <div className="col-md-4">
-            <img className="signin-art" src={plate} alt="Illustrated plate of grilled chicken, rice, and broccoli" />
           </div>
         </header>
 

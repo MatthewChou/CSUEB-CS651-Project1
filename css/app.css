@@ -31,6 +31,8 @@
   background: #edf0e2;
 }
 .meal-preview-image img { width: 100%; height: 100%; min-height: 0; object-fit: contain; }
+/* Keep the pixel illustration crisp without changing uploaded photos. */
+.meal-preview-image .pixel-plate-preview { image-rendering: pixelated; }
 .meal-preview figcaption { overflow-wrap: anywhere; }
 .companion-option { width: 100%; height: 100%; padding: 12px 8px; }
 .companion-option span, .companion-option small { display: block; }
