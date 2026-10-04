@@ -54,7 +54,7 @@ export default function SignIn() {
               <aside className="signin-invitation" aria-labelledby="invitation-heading">
                 <p className="eyebrow mb-2">Pull up a chair</p>
                 <h2 className="signin-heading" id="invitation-heading">A pal for every plate.</h2>
-                <p>New here? Select Create Account to try the account form, or explore the meal workspace.</p>
+                <p>New here? Select Create Account to get started or just hang out and we can cook later.</p>
                 <a href="./app.html">Explore the App</a>
               </aside>
             )}

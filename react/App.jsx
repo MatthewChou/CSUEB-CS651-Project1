@@ -54,7 +54,7 @@ export default function App() {
               <MealPreview image={mealImage} />
               <div className="d-flex flex-wrap gap-2 mt-4">
                 <button className="btn btn-primary" type="button" disabled={!mealImage}
-                  onClick={() => setShowResults(true)}>Show sample results</button>
+                  onClick={() => setShowResults(true)}>Submit</button>
                 {mealImage && <button className="btn btn-outline-primary" type="button"
                   onClick={resetMeal}>Start over</button>}
               </div>

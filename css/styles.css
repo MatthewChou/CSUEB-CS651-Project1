@@ -14,7 +14,12 @@ a { color: var(--pv-green); }
 .navbar-brand { color: var(--pv-ink); font-weight: 750; letter-spacing: -0.5px; }
 /* The supplied logo includes its wordmark; preserve its original proportions. */
 .brand-mark { display: block; width: 180px; height: auto; }
-.navbar .nav-link { color: var(--pv-muted); padding-inline: 14px; }
+/* Shared by the HTML and React pages so every navigation link has the same size. */
+.navbar .nav-link {
+  color: var(--pv-muted);
+  font-size: 1.25rem;
+  padding-inline: 14px;
+}
 .navbar .nav-link.active { color: var(--pv-green); font-weight: 700; }
 .navbar .nav-link:hover { color: var(--pv-green); }
 .btn-primary {

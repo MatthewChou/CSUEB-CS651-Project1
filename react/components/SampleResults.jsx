@@ -1,8 +1,8 @@
 // Fixed classroom examples, independent of the selected photograph.
 const foods = [
-  { name: 'Grilled chicken', portion: 'One sample serving', calories: 250 },
-  { name: 'Rice', portion: 'One sample serving', calories: 205 },
-  { name: 'Broccoli', portion: 'One sample serving', calories: 55 },
+  { name: 'Grilled chicken', portion: '1 Serving', calories: 250 },
+  { name: 'Rice', portion: '1 Serving', calories: 205 },
+  { name: 'Broccoli', portion: '1 Serving', calories: 55 },
 ];
 
 const suggestions = {
@@ -25,13 +25,13 @@ export default function SampleResults({ visible, companion }) {
             <p className="demo-note">Sample results for chicken, rice, and broccoli. These examples stay the same for every photo.</p>
             <div className="sample-total my-4">
               <div><span className="sample-label">Sample estimate</span><p className="mb-0 mt-2">Total meal calories</p></div>
-              <strong>{totalCalories}<small> kcal</small></strong>
+              <strong>{totalCalories}<small> cal</small></strong>
             </div>
             <ul className="food-results list-unstyled mb-4">
               {foods.map((food) => (
                 <li className="food-result" key={food.name}>
                   <div><h3>{food.name}</h3><p>{food.portion}</p></div>
-                  <span>{food.calories} kcal</span>
+                  <span>{food.calories} cal</span>
                 </li>
               ))}
             </ul>
@@ -43,7 +43,7 @@ export default function SampleResults({ visible, companion }) {
         ) : (
           <div className="results-empty mt-3">
             <p className="fw-semibold mb-2">A fresh plate, a fresh start.</p>
-            <p className="mb-0">Choose a photo or use the sample meal, then select Show sample results to explore an example.</p>
+            <p className="mb-0">Choose a photo or use the sample meal, then select Submit to explore an example.</p>
           </div>
         )}
       </div>
