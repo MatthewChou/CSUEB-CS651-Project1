@@ -1,19 +1,71 @@
+import { useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import PageIntro from './components/PageIntro';
+import LoginForm from './components/LoginForm';
+import CreateAccountForm from './components/CreateAccountForm';
+import plate from '../images/plate.svg';
+import '../css/signin.css';
 
 export default function SignIn() {
+  // Controlled inputs keep the login and password in React state.
+  const [credentials, setCredentials] = useState({ login: '', password: '' });
+  const [showAccountForm, setShowAccountForm] = useState(false);
+  const [message, setMessage] = useState('');
+  const loginInput = useRef(null);
+
+  function updateCredentials(field, value) {
+    setCredentials(current => ({ ...current, [field]: value }));
+    setMessage('');
+  }
+
+  function createAccount(newCredentials) {
+    // Enter copies the new values into the ORIGINAL form, then hides the new form.
+    setCredentials(newCredentials);
+    setShowAccountForm(false);
+    setMessage('Your demo login and password are filled in. Select Submit to try signing in.');
+    loginInput.current.focus();
+  }
+
   return (
     <>
       <Navbar currentPage="Sign In" />
-      <PageIntro eyebrow="Your PlatePal account" title="Welcome to the table.">
-        <p className="lead mt-3">The sign-in interface will be built here with React components.</p>
-        <div className="starter-note mt-4">
-          <strong>Planned for a later coding step</strong>
-          <p className="mb-0 mt-2">A login form and a Create Account form that appears beside it. React state will copy the new login and password into the original form.</p>
+      <main id="main-content" className="page-content container signin-workspace">
+        <header className="row align-items-center g-4 mb-4">
+          <div className="col-md-8">
+            <p className="eyebrow">Your PlatePal account</p>
+            <h1>Welcome to the table.</h1>
+            <p className="lead mt-3">A place for your meals, your goals, and your companion.</p>
+            <p className="demo-note mb-0">Classroom demo · Use made-up details. These forms do not create real accounts.</p>
+          </div>
+          <div className="col-md-4">
+            <img className="signin-art" src={plate} alt="Illustrated plate of grilled chicken, rice, and broccoli" />
+          </div>
+        </header>
+
+        {/* The original login form stays on the left; Bootstrap stacks forms on mobile. */}
+        <div className="row g-4 align-items-start">
+          <div className="col-md-6">
+            <LoginForm values={credentials} onChange={updateCredentials}
+              onSubmit={() => setMessage('Demo sign-in complete. Explore the App to try a sample meal.')}
+              onCreateAccount={() => { setShowAccountForm(true); setMessage(''); }}
+              showAccountForm={showAccountForm} loginInput={loginInput} />
+            <p className="signin-status mt-3 mb-0" role="status" aria-atomic="true">{message}</p>
+          </div>
+          <div className="col-md-6">
+            {/* Conditional rendering removes every account-form field after Enter. */}
+            {showAccountForm ? (
+              <CreateAccountForm onEnter={createAccount} />
+            ) : (
+              <aside className="signin-invitation" aria-labelledby="invitation-heading">
+                <p className="eyebrow mb-2">Pull up a chair</p>
+                <h2 className="signin-heading" id="invitation-heading">A pal for every plate.</h2>
+                <p>New here? Select Create Account to try the account form, or explore the meal workspace.</p>
+                <a href="./app.html">Explore the App</a>
+              </aside>
+            )}
+          </div>
         </div>
-        <p className="demo-note mt-3">Step 1: page foundation only. Account forms have not been implemented.</p>
-      </PageIntro>
+      </main>
       <Footer />
     </>
   );
