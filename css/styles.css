@@ -113,81 +113,53 @@ a { color: var(--pv-green); }
   .navbar .nav-link { padding-block: 12px; }
 }
 
-/* Home-only decorations: side gutters keep the artwork clear of text and controls. */
-.home-page {
+/* About-only decorations occupy a reserved gutter on the right. */
+.about-page {
   position: relative;
   isolation: isolate;
-  --food-inset: max(16px, calc((100% - 1120px) / 2 - 120px));
-  --scatter-scale: 1;
-  padding-inline: 128px;
+  --food-scale: 1;
+  padding-right: 252px;
 }
-.home-page > section { position: relative; z-index: 1; }
-.food-border {
+.about-page > section { position: relative; z-index: 1; }
+.about-foods {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
 }
-.edge-food {
+.about-food {
   position: absolute;
-  width: 88px;
+  /* Nudge every food slightly right; scale the adjustment down on smaller screens. */
+  right: calc((var(--food-right) - 16px) * var(--food-scale));
+  width: 76px;
   height: auto;
   image-rendering: pixelated;
 }
-/* Five foods per side, with uneven spacing and offsets for a scattered look. */
-.food-strawberry { left: calc(var(--food-inset) + 10px * var(--scatter-scale)); top: 4%; transform: rotate(-16deg); }
-.food-steak { left: calc(var(--food-inset) - 6px * var(--scatter-scale)); top: 19%; transform: rotate(9deg); }
-.food-grapes { left: calc(var(--food-inset) + 18px * var(--scatter-scale)); top: 43%; transform: rotate(-8deg); }
-.food-broccoli { left: calc(var(--food-inset) + 2px * var(--scatter-scale)); top: 68%; transform: rotate(16deg); }
-.food-avocado { left: calc(var(--food-inset) - 8px * var(--scatter-scale)); top: 87%; transform: rotate(-19deg); }
-.food-taco { right: calc(var(--food-inset) + 16px * var(--scatter-scale)); top: 11%; transform: rotate(17deg); }
-.food-pizza { right: calc(var(--food-inset) - 4px * var(--scatter-scale)); top: 28%; transform: rotate(-12deg); }
-.food-hot-dog { right: calc(var(--food-inset) + 6px * var(--scatter-scale)); top: 51%; transform: rotate(8deg); }
-.food-chicken { right: calc(var(--food-inset) + 20px * var(--scatter-scale)); top: 73%; transform: rotate(-18deg); }
-.food-cheeseburger { right: calc(var(--food-inset) - 8px * var(--scatter-scale)); top: 91%; transform: rotate(12deg); }
+/* Uneven horizontal offsets, heights, and angles create the scattered arrangement. */
+.food-strawberry { --food-right: 28px; top: 2%; transform: rotate(-16deg); }
+.food-taco { --food-right: 146px; top: 8%; transform: rotate(17deg); }
+.food-steak { --food-right: 66px; top: 16%; transform: rotate(9deg); }
+.food-pizza { --food-right: 156px; top: 23%; transform: rotate(-12deg); }
+.food-grapes { --food-right: 22px; top: 30%; transform: rotate(-8deg); }
+.food-hot-dog { --food-right: 122px; top: 36%; transform: rotate(8deg); }
+.food-chicken { --food-right: 40px; top: 44%; transform: rotate(-18deg); }
+.food-cheeseburger { --food-right: 152px; top: 50%; transform: rotate(12deg); }
+.food-broccoli { --food-right: 20px; top: 59%; transform: rotate(16deg); }
+.food-avocado { --food-right: 132px; top: 64%; transform: rotate(-19deg); }
+.food-sushi { --food-right: 62px; top: 72%; transform: rotate(-12deg); }
+.food-cake { --food-right: 156px; top: 78%; transform: rotate(12deg); }
+.food-matcha { --food-right: 18px; top: 83%; transform: rotate(10deg); }
+.food-pancakes { --food-right: 120px; top: 87%; transform: rotate(-8deg); }
+.food-boba { --food-right: 44px; bottom: 16px; transform: rotate(-10deg); }
 
-@media (max-width: 1199px) {
-  .home-page { --food-inset: 8px; padding-inline: 80px; }
-  .edge-food { width: 56px; }
-}
-
+/* Smaller screens keep all the foods, with a narrower gutter and smaller artwork. */
 @media (max-width: 991px) {
-  .home-page { padding-inline: 68px; }
-  .edge-food { width: 44px; }
+  .about-page { --food-scale: 0.4; padding-right: 128px; }
+  .about-food { width: 44px; }
 }
 
-/* Keep five foods on each side on phones, using smaller images and offsets. */
 @media (max-width: 575px) {
-  .home-page { --food-inset: 4px; --scatter-scale: 0.25; padding-inline: 36px; }
-  .edge-food { width: 30px; }
-}
-
-/* The plate has its own frame so these five accents never cover the hero copy. */
-.plate-scene {
-  position: relative;
-  max-width: 540px;
-  margin-inline: auto;
-  padding: 64px 50px 72px;
-}
-.plate-foods { pointer-events: none; user-select: none; }
-.plate-food {
-  position: absolute;
-  width: clamp(38px, 6vw, 80px);
-  height: auto;
-  image-rendering: pixelated;
-}
-.plate-sushi { top: 0; left: 40%; transform: rotate(-12deg); }
-.plate-cake { top: 32%; right: 0; transform: rotate(12deg); }
-.plate-boba { top: 35%; left: 0; transform: rotate(-10deg); }
-.plate-pancakes { bottom: 4px; left: 15%; transform: rotate(-8deg); }
-.plate-matcha { bottom: 0; right: 13%; transform: rotate(10deg); }
-
-@media (max-width: 991px) {
-  .plate-scene { padding: 52px 42px 60px; }
-}
-
-@media (max-width: 767px) {
-  .plate-scene { padding: 48px 32px 56px; }
-  .plate-food { width: 44px; }
+  .about-page { --food-scale: 0.18; padding-right: 72px; }
+  .about-food { width: 28px; }
 }

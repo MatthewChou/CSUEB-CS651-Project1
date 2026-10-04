@@ -5,7 +5,7 @@ import MealPicker from './components/MealPicker';
 import MealPreview from './components/MealPreview';
 import CompanionSelector from './components/CompanionSelector';
 import SampleResults from './components/SampleResults';
-import plate from '../images/empty-plate.png';
+import plate from '../images/fork-knife-plate.png';
 import '../css/app.css';
 
 export default function App() {

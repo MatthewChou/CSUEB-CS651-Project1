@@ -1,4 +1,4 @@
-import plate from '../../images/empty-plate.png';
+import plate from '../../images/fork-knife-plate.png';
 
 // The same preview can display the starter illustration, a sample, or a local photo.
 export default function MealPreview({ image }) {
@@ -8,7 +8,7 @@ export default function MealPreview({ image }) {
         <img src={image ? image.url : plate}
           className={!image || image.isSample ? 'pixel-plate-preview' : undefined}
           alt={image && !image.isSample ? 'Selected meal photo'
-            : 'Pixel-art empty plate'} />
+            : 'Pixel-art empty plate with a fork and knife'} />
       </div>
       {!image?.isSample && (
         <figcaption className="demo-note mt-3" aria-live="polite">
