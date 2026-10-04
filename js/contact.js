@@ -7,7 +7,7 @@ const contactStatus = document.getElementById('contact-status');
 contactForm.addEventListener('submit', (event) => {
   // Prevent a page reload: this classroom demo has no message service.
   event.preventDefault();
-  contactStatus.textContent = 'Thanks for trying the demo! No message was sent or saved.';
+  contactStatus.textContent = 'Thanks for trying the demo!';
 });
 
 // Clear the old confirmation when the visitor edits the form again.

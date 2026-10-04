@@ -27,7 +27,7 @@ export default function App() {
   }
 
   function selectSample() {
-    setMealImage({ url: plate, name: 'PlatePal sample illustration', isSample: true });
+    setMealImage({ url: plate, isSample: true });
     setShowResults(false);
   }
 
@@ -44,7 +44,6 @@ export default function App() {
           <p className="eyebrow">Your companion at the table</p>
           <h1>What's on your plate?</h1>
           <p className="lead mt-3">Bring a meal to the table. Preview a photo, explore sample food results, and find your companion style.</p>
-          <span className="sample-label">Classroom demo · Sample results</span>
         </header>
 
         {/* Bootstrap columns sit beside each other on desktop and stack on mobile. */}
@@ -59,7 +58,6 @@ export default function App() {
                 {mealImage && <button className="btn btn-outline-primary" type="button"
                   onClick={resetMeal}>Start over</button>}
               </div>
-              <p className="demo-note mt-3 mb-0">Your photo stays in this browser. Selecting a photo changes the preview; the food results are fixed examples.</p>
             </section>
           </div>
 

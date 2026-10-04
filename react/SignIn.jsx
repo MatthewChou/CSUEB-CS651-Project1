@@ -35,7 +35,6 @@ export default function SignIn() {
             <p className="eyebrow">Your PlatePal account</p>
             <h1>Welcome to the table.</h1>
             <p className="lead mt-3">A place for your meals, your goals, and your companion.</p>
-            <p className="demo-note mb-0">Classroom demo · Use made-up details. These forms do not create real accounts.</p>
           </div>
           <div className="col-md-4">
             <img className="signin-art" src={plate} alt="Illustrated plate of grilled chicken, rice, and broccoli" />

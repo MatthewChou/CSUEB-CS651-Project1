@@ -33,7 +33,6 @@
         <p class="eyebrow">Get in touch</p>
         <h1 id="contact-heading">Let’s talk about food and technology.</h1>
         <p class="lead mt-4">Have a question or an idea for PlatePal? We'd love to hear what would make a meal companion helpful in your everyday life.</p>
-        <p class="demo-note mb-0">PlatePal is a fictional startup for a Web Systems class. This form demonstrates the contact experience using your browser.</p>
       </div>
       <div class="col-md-5"><img class="hero-art" src="./images/plate.svg" alt="Illustrated plate of grilled chicken, rice, and broccoli"></div>
     </section>
@@ -44,9 +43,8 @@
         <div class="contact-panel">
           <p class="eyebrow">A little food for thought</p>
           <h2 class="section-heading" id="message-heading">Share your idea.</h2>
-          <p class="demo-note" id="contact-demo-note">Demo only: no message is sent or saved.</p>
           <!-- Skip validation so the form stays a simple classroom interface demo. -->
-          <form id="contact-form" aria-describedby="contact-demo-note" novalidate>
+          <form id="contact-form" novalidate>
             <div class="row g-3">
               <div class="col-sm-6">
                 <label class="form-label" for="contact-name">Name</label>
@@ -59,21 +57,12 @@
                   autocomplete="email">
               </div>
               <div class="col-12">
-                <label class="form-label" for="contact-topic">Topic</label>
-                <select class="form-select" id="contact-topic" name="topic">
-                  <option value="">Choose a topic</option>
-                  <option value="question">A question about PlatePal</option>
-                  <option value="idea">A feature idea</option>
-                  <option value="feedback">Feedback on the prototype</option>
-                </select>
-              </div>
-              <div class="col-12">
                 <label class="form-label" for="contact-message">Message</label>
                 <textarea class="form-control" id="contact-message" name="message"
                   rows="5"></textarea>
               </div>
             </div>
-            <button class="btn btn-primary mt-4" type="submit">Submit demo message</button>
+            <button class="btn btn-primary mt-4" type="submit">Submit message</button>
             <!-- An initially empty live region announces the JavaScript confirmation. -->
             <p class="contact-status mb-0" id="contact-status" role="status" aria-atomic="true"></p>
           </form>
@@ -96,7 +85,7 @@
   </main>
   <footer class="site-footer">
     <div class="container d-flex flex-wrap justify-content-between gap-2">
-      <span>PlatePal · A Web Systems class project</span>
+      <span>PlatePal</span>
       <span>Your companion at the table.</span>
     </div>
   </footer>

@@ -6,9 +6,9 @@ const foods = [
 ];
 
 const suggestions = {
-  Casual: 'A little more color? Try some fruit alongside this sample plate.',
-  Strict: 'Round out this sample plate with a serving of fruit.',
-  Athlete: 'Keep the example going: add fruit and yogurt alongside this sample plate.',
+  Casual: 'Good start! However, try adding a little more color, carrots are in season right now!',
+  Strict: 'Missing color: carrots, beans, kale...',
+  Athlete: 'I told you to lay off the donuts. Remove the fried food from the plate right now.',
 };
 
 export default function SampleResults({ visible, companion }) {
