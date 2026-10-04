@@ -1,19 +1,79 @@
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import PageIntro from './components/PageIntro';
+import MealPicker from './components/MealPicker';
+import MealPreview from './components/MealPreview';
+import CompanionSelector from './components/CompanionSelector';
+import SampleResults from './components/SampleResults';
+import plate from '../images/plate.svg';
+import '../css/app.css';
 
 export default function App() {
+  // App owns the shared state; children receive values and callbacks through props.
+  const [mealImage, setMealImage] = useState(null);
+  const [showResults, setShowResults] = useState(false);
+  const [companion, setCompanion] = useState('Casual');
+
+  // Release each temporary image URL when the photo changes or App unmounts.
+  useEffect(() => {
+    return () => {
+      if (mealImage && !mealImage.isSample) URL.revokeObjectURL(mealImage.url);
+    };
+  }, [mealImage]);
+
+  function selectPhoto(file) {
+    setMealImage({ url: URL.createObjectURL(file), name: file.name, isSample: false });
+    setShowResults(false);
+  }
+
+  function selectSample() {
+    setMealImage({ url: plate, name: 'PlatePal sample illustration', isSample: true });
+    setShowResults(false);
+  }
+
+  function resetMeal() {
+    setMealImage(null);
+    setShowResults(false);
+  }
+
   return (
     <>
       <Navbar currentPage="App" />
-      <PageIntro eyebrow="The PlatePal workspace" title="Meet your meal companion.">
-        <p className="lead mt-3">Start with a meal photo. PlatePal's planned features will identify foods, suggest additions, and show estimated progress toward your daily calorie goal.</p>
-        <div className="starter-note mt-4">
-          <strong>Coming in our next coding step</strong>
-          <p className="mb-0 mt-2">Choose a photo, see a preview, and display sample food results and meal suggestions using React state.</p>
+      <main id="main-content" className="page-content container meal-workspace">
+        <header className="workspace-intro mb-4">
+          <p className="eyebrow">Your companion at the table</p>
+          <h1>What's on your plate?</h1>
+          <p className="lead mt-3">Bring a meal to the table. Preview a photo, explore sample food results, and find your companion style.</p>
+          <span className="sample-label">Classroom demo · Sample results</span>
+        </header>
+
+        {/* Bootstrap columns sit beside each other on desktop and stack on mobile. */}
+        <div className="row g-4 align-items-start">
+          <div className="col-lg-6">
+            <section className="workspace-panel" aria-labelledby="meal-picker-heading">
+              <MealPicker onSelectPhoto={selectPhoto} onSelectSample={selectSample} />
+              <MealPreview image={mealImage} />
+              <div className="d-flex flex-wrap gap-2 mt-4">
+                <button className="btn btn-primary" type="button" disabled={!mealImage}
+                  onClick={() => setShowResults(true)}>Show sample results</button>
+                {mealImage && <button className="btn btn-outline-primary" type="button"
+                  onClick={resetMeal}>Start over</button>}
+              </div>
+              <p className="demo-note mt-3 mb-0">Your photo stays in this browser. Selecting a photo changes the preview; the food results are fixed examples.</p>
+            </section>
+          </div>
+
+          <div className="col-lg-6">
+            <section className="workspace-panel mb-4" aria-labelledby="companion-heading">
+              <CompanionSelector value={companion} onChange={setCompanion} />
+            </section>
+            {/* Composition: SampleResults uses both the result state and companion state. */}
+            <section className="workspace-panel" aria-labelledby="results-heading">
+              <SampleResults visible={showResults} companion={companion} />
+            </section>
+          </div>
         </div>
-        <p className="demo-note mt-3">Step 1: page foundation only. Analysis and calorie tracking are planned features. Project 1 will use sample results; Project 2 will connect Gemini through a backend.</p>
-      </PageIntro>
+      </main>
       <Footer />
     </>
   );
